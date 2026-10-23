@@ -33,33 +33,35 @@ This project builds a complete open-source question-answering pipeline, implemen
 
 ## System architecture
 
-```text
-       Natural Questions Open              TriviaQA
-        (50 question–answer pairs)       (450 passages)
-                    \                        /
-                     \                      /
-                     500-passage corpus
-                              |
-                  [optional attack insertion]
-                              |
-                    Sentence-Transformers
-                       all-MiniLM-L6-v2
-                              |
-                      384-d embeddings
-                              |
-                    FAISS IndexFlatIP
-                   (normalized inner product)
-                              |
-                      Top-5 passages
-                              |
-                     [optional defense]
-                              |
-                   google/flan-t5-base
-                              |
-                   Generated answer
-                              |
-                   Evaluation metrics
+```mermaid
+flowchart TD
+    A[Natural Questions Open<br/>50 question-answer pairs]
+    B[TriviaQA<br/>450 passages]
+    C[Build 500-passage corpus]
+    D[Optional attack insertion<br/>RAG Poisoning / Prompt Injection]
+    E[Sentence-Transformers<br/>all-MiniLM-L6-v2]
+    F[384-dimensional embeddings]
+    G[FAISS IndexFlatIP<br/>normalized inner-product retrieval]
+    H[Top-5 retrieved passages]
+    I[Optional defense layer<br/>keyword filter / anomaly detector]
+    J[Generator<br/>google/flan-t5-base]
+    K[Generated answer]
+    L[Evaluation metrics<br/>Accuracy, ASR, Precision, Recall]
+
+    A --> C
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
 ```
+
+The pipeline builds a 500-passage corpus, optionally injects adversarial content, retrieves the top-5 passages using dense retrieval, applies optional defenses, and generates answers with FLAN-T5 before evaluating attack impact.
 
 | Component | Implementation | Role |
 | --- | --- | --- |
