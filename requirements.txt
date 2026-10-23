@@ -1,0 +1,13 @@
+# Used by the notebook. Version locks are not supplied by the original project.
+# Python 3.10 was used for the submitted notebook.
+sentence-transformers
+faiss-cpu
+transformers
+datasets
+accelerate
+torch
+sentencepiece
+numpy
+pandas
+matplotlib
+jupyterlab
