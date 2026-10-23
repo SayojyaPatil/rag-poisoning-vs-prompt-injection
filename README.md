@@ -277,4 +277,4 @@ Full citations and discussion appear in the [research paper](CIS582_RAG_Poisonin
 
 ---
 
-**Responsible use:** The adversarial examples in this project are intended for controlled evaluation and defensive research. Do not deploy them against systems or corpora without authorization.
+Disclaimer: This project was developed for academic research and educational purposes as part of CIS 582 at the University of Michigan–Dearborn.
